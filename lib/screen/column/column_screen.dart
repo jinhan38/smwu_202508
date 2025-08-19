@@ -11,7 +11,23 @@ class ColumnScreen extends StatelessWidget {
         width: 300,
         color: Colors.grey,
         child: Column(
-
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          // mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 100,height: 100,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 100,height: 100,
+              color: Colors.red,
+            ),
+            Container(
+              width: 100,height: 100,
+              color: Colors.green,
+            ),
+          ],
         ),
       ),
     );
