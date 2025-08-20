@@ -20,7 +20,6 @@ class RowScreen extends StatelessWidget {
           ],
         ),
       ),
-
     );
   }
 }
