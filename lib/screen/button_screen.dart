@@ -3,6 +3,7 @@ import 'package:smwu_202508/screen/column/column_practice_screen.dart';
 import 'package:smwu_202508/screen/column/column_screen.dart';
 import 'package:smwu_202508/screen/container/container_practice_screen.dart';
 import 'package:smwu_202508/screen/container/container_screen.dart';
+import 'package:smwu_202508/screen/image/image_practice_screen.dart';
 import 'package:smwu_202508/screen/image/image_screen.dart';
 import 'package:smwu_202508/screen/row/column_row_practice_screen.dart';
 import 'package:smwu_202508/screen/row/row_practice_screen.dart';
@@ -158,6 +159,20 @@ class ButtonScreen extends StatelessWidget {
                 );
               },
               child: Text("Image"),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ImagePracticeScreen();
+                    },
+                  ),
+                );
+              },
+              child: Text("Image 실습"),
             ),
           ],
         ),
