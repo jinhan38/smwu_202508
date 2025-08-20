@@ -33,10 +33,12 @@ class ColumnRowPracticeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Column(children: [
-                  Container(width: 50, height: 50, color: Colors.green),
-                  Container(width: 50, height: 50, color: Colors.orange),
-                ]),
+                Column(
+                  children: [
+                    Container(width: 50, height: 50, color: Colors.green),
+                    Container(width: 50, height: 50, color: Colors.orange),
+                  ],
+                ),
                 Column(
                   children: [
                     Container(width: 50, height: 50, color: Colors.orange),
