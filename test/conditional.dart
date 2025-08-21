@@ -72,21 +72,40 @@ class Conditional {
     return "F";
   }
 
+  // String practiceSwitch(int score) {
+  //   // score에서 10을 나누고 정수를 반환
+  //   // ex) score = 90 => score ~/ 10 = 9
+  //   // ex) score = 85 => score ~/ 10 = 8
+  //   int value = score ~/ 10;
+  //   switch (value) {
+  //     case 9:
+  //       return "A";
+  //     case 8:
+  //       return "B";
+  //     case 7:
+  //       return "C";
+  //     case 6:
+  //       return "D";
+  //   }
+  //   return "F";
+  // }
+
   String practiceSwitch(int score) {
     // score에서 10을 나누고 정수를 반환
     // ex) score = 90 => score ~/ 10 = 9
     // ex) score = 85 => score ~/ 10 = 8
     int value = score ~/ 10;
+    String result = "F";
     switch (value) {
       case 9:
-        return "A";
+        result = "A";
       case 8:
-        return "B";
+        result = "B";
       case 7:
-        return "C";
+        result = "C";
       case 6:
-        return "D";
+        result = "D";
     }
-    return "F";
+    return result;
   }
 }

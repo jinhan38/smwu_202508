@@ -23,9 +23,11 @@ void main() {
   collection.mapController();
   collection.setController();
   collection.practice();
+
   var conditional = Conditional();
   conditional.simpleSwitch();
   var ifScore = conditional.practiceIf(87);
-  var switchScore = conditional.practiceSwitch(61);
+  var switchScore = conditional.practiceSwitch(91);
   print('main ifScore = $ifScore, switchScore = $switchScore');
+  conditional.practiceIf(87);
 }
