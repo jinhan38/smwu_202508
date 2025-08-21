@@ -18,4 +18,8 @@ void main() {
 
   Collections collection = Collections();
   collection.listAdd();
+  collection.listRemove();
+  collection.mapController();
+  collection.setController();
+
 }
