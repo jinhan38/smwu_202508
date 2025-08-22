@@ -14,6 +14,8 @@ import 'collections.dart';
 import 'conditional.dart';
 import 'for_loop.dart';
 import 'method.dart';
+import 'oop/person.dart';
+import 'oop/product.dart';
 
 void main() {
   // Method();
@@ -32,10 +34,37 @@ void main() {
   // print('main ifScore = $ifScore, switchScore = $switchScore');
   // conditional.practiceIf(87);
 
-  ForLoop();
+  // ForLoop();
 
+  Person person = Person("김진한", 34, 75);
+
+  // person : Instance of 'Person'
+  // Person 클래스의 인스턴스
+  // 인스턴스 => 클래스를 생성해서, 메모리에 올라간 상태
+  print("person : $person");
+  print("person name : ${person.name}");
+  print("person age : ${person.age}");
+  print("person weight : ${person.weight}");
+  print("person nickName : ${person.nickName}");
+  person.talk();
+
+  List<Person> personList = [];
+  Person person1 = Person("김진한", 34, 76);
+  Person person2 = Person("김휘건", 2, 13);
+  Person person3 = Person("김모건", 0, 6);
+
+  /// personList에 데이터들을 추가
+  personList.addAll([person1, person2, person3]);
+
+  /// personList의 기존의 데이터들은 사라지고, 새로 값 할당
+  personList = [person1, person2, person3];
+
+  print('personList : $personList');
+  Product(name: "jinhan", company: "샐링잇");
+  // Product.name(name, company);
+  // Product.all(name, company, count, price);
+
+  for (var person in personList) {
+    print(person);
+  }
 }
-
-
-
-
