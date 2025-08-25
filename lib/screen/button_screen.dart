@@ -235,7 +235,7 @@ class ButtonScreen extends StatelessWidget {
               SizedBox(height: 10),
               button(context, StatefulScreen(), "Stateful"),
               SizedBox(height: 10),
-              button(context, NavigatorScreen(), "Stateful"),
+              button(context, NavigatorScreen(), "Navigator"),
             ],
           ),
         ),

@@ -19,7 +19,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(width: 24),
-          Text(count.toString()),
+          Center(child: Text(count.toString())),
           SizedBox(width: 24),
           ElevatedButton(
             onPressed: () {
@@ -27,10 +27,15 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return Navigator2Screen();
+                    return Navigator2Screen(count: count);
                   },
                 ),
-              );
+              ).then((value) {
+                if (value != null && value is int) {
+                  count = value;
+                  setState(() {});
+                }
+              });
             },
             child: Text("2번 화면으로 이동"),
           ),
