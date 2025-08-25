@@ -22,10 +22,18 @@ class _TodoScreenState extends State<TodoScreen> {
             children: [
               /// 현재 주어진 영역의 빈 공간을 최대한 채우는 위젯
               Expanded(child: TextFormField(controller: controller)),
-              TextButton(onPressed: () {
-                /// todoList에 새로운 TodoModel 추가
-                print(controller.text);
-              }, child: Text("등록")),
+              TextButton(
+                onPressed: () {
+                  /// todoList에 새로운 TodoModel 추가
+                  print(controller.text);
+                  // TodoModel todoModel = TodoModel(controller.text, false);
+                  // var todoModel = TodoModel(controller.text, false);
+                  // todoList.add(todoModel);
+                  todoList.add(TodoModel(controller.text, false));
+                  setState(() {});
+                },
+                child: Text("등록"),
+              ),
             ],
           ),
 
