@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smwu_202508/screen/todo/todo_model.dart';
 
 class TodoScreen extends StatefulWidget {
   const TodoScreen({super.key});
@@ -8,6 +9,12 @@ class TodoScreen extends StatefulWidget {
 }
 
 class _TodoScreenState extends State<TodoScreen> {
+
+  List<TodoModel> todoList = [
+    TodoModel("산책", true),
+    TodoModel("저녁", false),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,18 +34,26 @@ class _TodoScreenState extends State<TodoScreen> {
           Expanded(
             child: ListView.separated(
               itemBuilder: (context, index) {
+                var model = todoList[index];
+
+                /// 1. checkbox를 선택 했을 때 checked 값을 변경하고 화면 갱신
+                /// 2. delete button을 클릭해서 클릭한 todoModel 제거
                 return Row(
                   children: [
-                    Checkbox(value: true, onChanged: (value) {}),
-                    Expanded(child: Text("내용")),
-                    IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                    Checkbox(value: model.checked, onChanged: (value) {
+
+                    }),
+                    Expanded(child: Text(model.name)),
+                    IconButton(onPressed: () {
+
+                    }, icon: Icon(Icons.delete)),
                   ],
                 );
               },
               separatorBuilder: (context, index) {
                 return Container(height: 2, color: Colors.grey);
               },
-              itemCount: 5,
+              itemCount: todoList.length,
             ),
           ),
         ],
