@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smwu_202508/screen/stateful/inner_state.dart';
 
 class StatefulScreen extends StatefulWidget {
   const StatefulScreen({super.key});
@@ -17,9 +18,15 @@ class _StatefulScreenState extends State<StatefulScreen> {
       body: Column(
         children: [
           Text("Count : $count"),
-          TextButton(onPressed: () {
-            count++;
-          }, child: Text("Count up")),
+          TextButton(
+            onPressed: () {
+              count++;
+              setState(() {});
+            },
+            child: Text("Count up"),
+          ),
+
+          InnerState(count: count),
         ],
       ),
     );
