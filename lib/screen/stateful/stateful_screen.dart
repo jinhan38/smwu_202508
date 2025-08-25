@@ -8,10 +8,20 @@ class StatefulScreen extends StatefulWidget {
 }
 
 class _StatefulScreenState extends State<StatefulScreen> {
+  int count = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Stateful"),),
+      appBar: AppBar(title: Text("Stateful")),
+      body: Column(
+        children: [
+          Text("Count : $count"),
+          TextButton(onPressed: () {
+            count++;
+          }, child: Text("Count up")),
+        ],
+      ),
     );
   }
 }
