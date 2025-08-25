@@ -9,11 +9,8 @@ class TodoScreen extends StatefulWidget {
 }
 
 class _TodoScreenState extends State<TodoScreen> {
-
-  List<TodoModel> todoList = [
-    TodoModel("산책", true),
-    TodoModel("저녁", false),
-  ];
+  TextEditingController controller = TextEditingController();
+  List<TodoModel> todoList = [TodoModel("산책", true), TodoModel("저녁", false)];
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +21,11 @@ class _TodoScreenState extends State<TodoScreen> {
           Row(
             children: [
               /// 현재 주어진 영역의 빈 공간을 최대한 채우는 위젯
-              Expanded(child: TextFormField()),
-              TextButton(onPressed: () {}, child: Text("등록")),
+              Expanded(child: TextFormField(controller: controller)),
+              TextButton(onPressed: () {
+                /// todoList에 새로운 TodoModel 추가
+                print(controller.text);
+              }, child: Text("등록")),
             ],
           ),
 
@@ -38,15 +38,26 @@ class _TodoScreenState extends State<TodoScreen> {
 
                 /// 1. checkbox를 선택 했을 때 checked 값을 변경하고 화면 갱신
                 /// 2. delete button을 클릭해서 클릭한 todoModel 제거
+                /// https://github.com/jinhan38/smwu_202508
                 return Row(
                   children: [
-                    Checkbox(value: model.checked, onChanged: (value) {
-
-                    }),
+                    Checkbox(
+                      value: model.checked,
+                      onChanged: (value) {
+                        // model.checked = value!;
+                        model.checked = !model.checked;
+                        setState(() {});
+                      },
+                    ),
                     Expanded(child: Text(model.name)),
-                    IconButton(onPressed: () {
-
-                    }, icon: Icon(Icons.delete)),
+                    IconButton(
+                      onPressed: () {
+                        print("index : $index");
+                        todoList.removeAt(index);
+                        setState(() {});
+                      },
+                      icon: Icon(Icons.delete),
+                    ),
                   ],
                 );
               },
