@@ -13,6 +13,7 @@ import 'package:smwu_202508/screen/scrollview/listview_screen.dart';
 import 'package:smwu_202508/screen/scrollview/scrollview_screen.dart';
 import 'package:smwu_202508/screen/stack/stack_practice_screen.dart';
 import 'package:smwu_202508/screen/stack/stack_screen.dart';
+import 'package:smwu_202508/screen/stateful/stateful_screen.dart';
 import 'package:smwu_202508/screen/text/text_practice_screen.dart';
 import 'package:smwu_202508/screen/text/text_screen.dart';
 
@@ -230,6 +231,8 @@ class ButtonScreen extends StatelessWidget {
               button(context, ListviewBuilderScreen(), "ListView Builder"),
               SizedBox(height: 10),
               button(context, ListviewPracticeScreen(), "ListView 실습"),
+              SizedBox(height: 10),
+              button(context, StatefulScreen(), "Stateful"),
             ],
           ),
         ),
