@@ -2,20 +2,31 @@ class JsonModel {
   String id;
   int number;
   Info? info;
+  List<Framework> frameworks;
 
-  JsonModel(this.id, this.number, this.info);
+  JsonModel(this.id, this.number, this.info, this.frameworks);
 
   factory JsonModel.fromJson(Map<String, dynamic> json) {
+    /// (json['framework'] as Iterable)
+    // (json['framework'] as Iterable).map((e) {
+    //   return Framework.fromJson(e);
+    // }).toList();
+    // json['framework'].map((e) => Framework.fromJson(e)).toList();
+    json['framework'].map((e) => Framework.fromJson(e)).toList();
+
     return JsonModel(
       json['id'] ?? '',
       json['number'] ?? 0,
       json['info'] == null ? null : Info.fromJson(json['info']),
+      json['framework'] == null
+          ? []
+          : (json['framework'] as Iterable).map((e) => Framework.fromJson(e)).toList(),
     );
   }
 
   @override
   String toString() {
-    return 'JsonModel{id: $id, number: $number, info: $info}';
+    return 'JsonModel{id: $id, number: $number, info: $info, frameworks: $frameworks}';
   }
 }
 
