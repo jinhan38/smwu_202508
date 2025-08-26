@@ -31,15 +31,25 @@ class _MemberListScreenState extends State<MemberListScreen> {
             onPressed: () {
               dio.get('/api/v1/member/all').then((value) {
                 if (value.data is Iterable) {}
-
                 memberList =
                     (value.data as Iterable)
                         .map((e) => Member.fromJson(e))
                         .toList();
-                print('memberList : $memberList');
+                setState(() {});
               });
             },
             child: Text("Get Data"),
+          ),
+
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [Text("이메일 : ${memberList[index].email}")],
+                );
+              },
+              itemCount: memberList.length,
+            ),
           ),
           // ElevatedButton(
           //   onPressed: () {
