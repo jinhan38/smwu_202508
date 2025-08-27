@@ -18,4 +18,6 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Web 디버그 모드 빌드시 추가할 것
 --web-browser-flag "--disable-web-security"
-main.dart -> Edit Configuration -> additional run args
+
+
+(main.dart -> Edit Configuration -> additional run args)
