@@ -20,23 +20,37 @@ class _MemberListScreenState extends State<MemberListScreen> {
   );
 
   List<Member> memberList = [];
+  bool loading = true;
 
   @override
   Widget build(BuildContext context) {
+    if(loading) {
+      return Scaffold(body: CircularProgressIndicator());
+    }
     return Scaffold(
       appBar: AppBar(title: Text("멤버 조회")),
       body: Column(
         children: [
           ElevatedButton(
-            onPressed: () {
-              dio.get('/api/v1/member/all').then((value) {
-                if (value.data is Iterable) {}
-                memberList =
-                    (value.data as Iterable)
-                        .map((e) => Member.fromJson(e))
-                        .toList();
-                setState(() {});
-              });
+            onPressed: () async {
+              loading = true;
+              setState(() {});
+              var response = await dio.get('/api/v1/member/all');
+              memberList =
+                  (response.data as Iterable)
+                      .map((e) => Member.fromJson(e))
+                      .toList();
+              loading = false;
+              setState(() {});
+
+              // dio.get('/api/v1/member/all').then((value) {
+              //   if (value.data is Iterable) {}
+              //   memberList =
+              //       (value.data as Iterable)
+              //           .map((e) => Member.fromJson(e))
+              //           .toList();
+              //   setState(() {});
+              // });
             },
             child: Text("Get Data"),
           ),
