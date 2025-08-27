@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:smwu_202508/screen/network/json_model.dart';
 import 'package:smwu_202508/screen/network/member.dart';
+import 'package:smwu_202508/screen/network/member_edit_screen.dart';
 
 class MemberListScreen extends StatefulWidget {
   const MemberListScreen({super.key});
@@ -59,14 +60,21 @@ class _MemberListScreenState extends State<MemberListScreen> {
             child: ListView.builder(
               padding: EdgeInsets.all(16),
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("이메일 : ${memberList[index].email}"),
-                      Text("설명 : ${memberList[index].description}"),
-                    ],
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return MemberEditScreen(email: memberList[index].email);
+                    },));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("이메일 : ${memberList[index].email}"),
+                        Text("설명 : ${memberList[index].description}"),
+                      ],
+                    ),
                   ),
                 );
               },
