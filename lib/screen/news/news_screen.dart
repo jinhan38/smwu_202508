@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:smwu_202508/screen/news/article.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});
@@ -22,6 +23,8 @@ class _NewsScreenState extends State<NewsScreen> {
 
   bool loading = true;
   int page = 1;
+  List<Article> articles = [];
+  int totalResults = 0;
 
   Future<void> getData() async {
     if (!loading) {
@@ -44,9 +47,16 @@ class _NewsScreenState extends State<NewsScreen> {
     );
 
     var response = await Dio().get(uri.toString());
-    // response.data["articles"];
-    // 1. ArticleModel 생성
-    // 2. List<ArticleModel> articles 생성
+
+    totalResults = response.data["totalResults"] ?? 0;
+
+    List<Article> tempList =
+        (response.data["articles"] as Iterable).map((e) {
+          return Article.fromJson(e);
+        }).toList();
+    articles.addAll(tempList);
+
+    print(articles);
 
     loading = false;
     setState(() {});
