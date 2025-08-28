@@ -44,6 +44,9 @@ class _NewsScreenState extends State<NewsScreen> {
     );
 
     var response = await Dio().get(uri.toString());
+    // response.data["articles"];
+    // 1. ArticleModel 생성
+    // 2. List<ArticleModel> articles 생성
 
     loading = false;
     setState(() {});
