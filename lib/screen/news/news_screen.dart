@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class NewsScreen extends StatefulWidget {
@@ -8,6 +9,52 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
+  /// GET 방식
+  /// https://newsapi.org/v2/everything?q=tesla&from=2025-07-28&sortBy=publishedAt&apiKey=API_KEY
+  /// https://newsapi.org => 도메인
+  /// /v2/everything => path 도메일 ~ ? 전까지.
+  /// q=tesla&from=2025-07-28&sortBy=publishedAt&apiKey=API_KEY
+  /// ? 이후 => query
+  ///
+  /// GET과 POST의 차이
+  /// GET은 인터넷 주소창에 검색해도 호출 가능.
+  /// POST는 인터넷 주소창에서 호출 불가능.
+
+  bool loading = true;
+  int page = 1;
+
+  Future<void> getData() async {
+    if (!loading) {
+      loading = true;
+      setState(() {});
+    }
+
+    Uri uri = Uri(
+      scheme: "https",
+      host: "newsapi.org",
+      path: "/v2/everything",
+      queryParameters: {
+        "q": "google",
+        "from": "2025-08-01",
+        "sortBy": "publishedAt",
+        "apiKey": "f4e382a85f8e45a5878357459c397275",
+        "pageSize": "20",
+        "page": page.toString(),
+      },
+    );
+
+    var response = await Dio().get(uri.toString());
+
+    loading = false;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +75,10 @@ class _NewsScreenState extends State<NewsScreen> {
                   children: [
                     Text(
                       "타이틀",
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                       maxLines: 1,
                     ),
                     Text("부제", style: TextStyle(fontSize: 17), maxLines: 2),
