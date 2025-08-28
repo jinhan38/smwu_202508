@@ -16,9 +16,16 @@ class _GetxScreenState extends State<GetxScreen> {
     return Scaffold(
       appBar: AppBar(title: Text("Getx")),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+
+          /// GetX 상태관리의 두가지 요소
+          /// 1. Rx로 선언된 변수
+          /// 2. Obx로 감쌀것.
           Obx(() {
-            return Text(MyController.to.count.value.toString());
+            return Text(MyController.to.count.value.toString(),
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 30),);
           }),
 
           ElevatedButton(

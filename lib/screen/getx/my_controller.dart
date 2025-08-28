@@ -8,8 +8,9 @@ class MyController extends GetxController {
   static MyController get to => Get.find<MyController>();
 
   RxInt count = 0.obs;
+  RxString name = "".obs;
 
   void countUp() {
-    count.value++;
+    count.value ++;
   }
 }
