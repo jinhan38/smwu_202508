@@ -25,6 +25,7 @@ class _NewsScreenState extends State<NewsScreen> {
   int page = 1;
   List<Article> articles = [];
   int totalResults = 0;
+  ScrollController scrollController = ScrollController();
 
   Future<void> getData() async {
     if (!loading) {
@@ -65,6 +66,17 @@ class _NewsScreenState extends State<NewsScreen> {
   @override
   void initState() {
     getData();
+    scrollController.addListener(() {
+      if (scrollController.position.atEdge) {
+        bool isBottom =
+            scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent;
+        if (isBottom && totalResults > articles.length && !loading) {
+          page++;
+          getData();
+        }
+      }
+    });
     super.initState();
   }
 
@@ -73,6 +85,7 @@ class _NewsScreenState extends State<NewsScreen> {
     return Scaffold(
       appBar: AppBar(title: Text("News")),
       body: ListView.builder(
+        controller: scrollController,
         padding: EdgeInsets.all(16),
         itemBuilder: (context, index) {
           var model = articles[index];
@@ -105,7 +118,11 @@ class _NewsScreenState extends State<NewsScreen> {
                         ),
                         maxLines: 1,
                       ),
-                      Text(model.description, style: TextStyle(fontSize: 17), maxLines: 2),
+                      Text(
+                        model.description,
+                        style: TextStyle(fontSize: 17),
+                        maxLines: 2,
+                      ),
                       Text(model.author, style: TextStyle(fontSize: 14)),
                       Text(model.publishedAt, style: TextStyle(fontSize: 14)),
                     ],
